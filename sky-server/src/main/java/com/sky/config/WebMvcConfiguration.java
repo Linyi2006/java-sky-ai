@@ -70,6 +70,7 @@ public class WebMvcConfiguration extends WebMvcConfigurationSupport {
         registry.addResourceHandler("/doc.html").addResourceLocations("classpath:/META-INF/resources/");
         registry.addResourceHandler("/webjars/**").addResourceLocations("classpath:/META-INF/resources/webjars/");
     }
+
 //    protected  void extendMessageConverters(List<HttpMessageConverter<?>> converters){
 //        MappingJackson2HttpMessageConverter converter = new MappingJackson2HttpMessageConverter();
 //        converters.setObjectMapper(new JacksonObjectMapper());
