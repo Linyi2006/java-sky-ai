@@ -89,4 +89,11 @@ public class EmployeeServiceImpl implements EmployeeService {
         List<Employee> records=page.getResult();
     return new PageResult(total,records);
     }
+
+    public void startOrStop(Integer status, long id) {
+        Employee employee = new Employee();
+        employee.setStatus(status);
+        employee.setId(id);
+        employeeMapper.update(employee);
+    }
 }
