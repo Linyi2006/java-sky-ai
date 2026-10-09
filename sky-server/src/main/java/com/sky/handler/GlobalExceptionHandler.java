@@ -40,4 +40,13 @@ public class GlobalExceptionHandler {
             return Result.error(MessageConstant.UNKNOWN_ERROR);
         }
     }
+
+    /**
+     * 捕获其他所有异常
+     */
+    @ExceptionHandler
+    public Result exceptionHandler(Exception ex) {
+        log.error("系统异常：", ex);
+        return Result.error("服务器内部错误：" + ex.getMessage());
+    }
 }

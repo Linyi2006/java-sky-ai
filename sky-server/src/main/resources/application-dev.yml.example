@@ -1,0 +1,14 @@
+# 复制此文件为 application-dev.yml 并填入你的真实配置
+sky:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    host: localhost
+    port: 3306
+    database: sky_take_out
+    username: root
+    password: your_password_here
+  alioss:
+    endpoint: oss-cn-beijing.aliyuncs.com
+    access-key-id: your_access_key_id_here
+    access-key-secret: your_access_key_secret_here
+    bucket-name: your_bucket_name_here
