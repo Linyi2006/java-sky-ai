@@ -35,17 +35,12 @@ public class AliOssUtil {
             // 创建PutObject请求。
             ossClient.putObject(bucketName, objectName, new ByteArrayInputStream(bytes));
         } catch (OSSException oe) {
-            System.out.println("Caught an OSSException, which means your request made it to OSS, "
-                    + "but was rejected with an error response for some reason.");
-            System.out.println("Error Message:" + oe.getErrorMessage());
-            System.out.println("Error Code:" + oe.getErrorCode());
-            System.out.println("Request ID:" + oe.getRequestId());
-            System.out.println("Host ID:" + oe.getHostId());
+            log.error("阿里云OSS上传失败, ErrorCode:{}, ErrorMessage:{}, RequestId:{}, HostId:{}",
+                    oe.getErrorCode(), oe.getErrorMessage(), oe.getRequestId(), oe.getHostId(), oe);
+            throw new RuntimeException("阿里云OSS上传失败: " + oe.getErrorCode() + " - " + oe.getErrorMessage(), oe);
         } catch (ClientException ce) {
-            System.out.println("Caught an ClientException, which means the client encountered "
-                    + "a serious internal problem while trying to communicate with OSS, "
-                    + "such as not being able to access the network.");
-            System.out.println("Error Message:" + ce.getMessage());
+            log.error("阿里云OSS客户端连接失败(网络/AccessKey/endpoint区域问题), ErrorMessage:{}", ce.getMessage(), ce);
+            throw new RuntimeException("阿里云OSS连接失败: " + ce.getMessage(), ce);
         } finally {
             if (ossClient != null) {
                 ossClient.shutdown();
