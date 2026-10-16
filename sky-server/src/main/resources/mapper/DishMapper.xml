@@ -11,7 +11,7 @@
     </insert>
     <delete id="deleteByIds">
         delete from dish where id in
-                         <foreach   collection="ids" open="(" close=")" separator=",">
+                         <foreach collection="ids" item="id" open="(" close=")" separator=",">
                          #{id}
                          </foreach>
     </delete>
