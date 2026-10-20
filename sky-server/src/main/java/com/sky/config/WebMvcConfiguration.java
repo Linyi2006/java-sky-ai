@@ -80,8 +80,18 @@ public class WebMvcConfiguration extends WebMvcConfigurationSupport {
         registry.addResourceHandler("/webjars/**").addResourceLocations("classpath:/META-INF/resources/webjars/");
     }
 
-//    protected  void extendMessageConverters(List<HttpMessageConverter<?>> converters){
-//        MappingJackson2HttpMessageConverter converter = new MappingJackson2HttpMessageConverter();
-//        converters.setObjectMapper(new JacksonObjectMapper());
-//    }
+    /**
+     * 扩展消息转换器
+     *
+     * @param converters
+     */
+    protected void extendMessageConverters(List<HttpMessageConverter<?>> converters) {
+        log.info("扩展消息转换器...");
+        //创建消息转换器对象
+        MappingJackson2HttpMessageConverter converter = new MappingJackson2HttpMessageConverter();
+        //设置对象转换器，底层使用Jackson将Java对象转为json
+        converter.setObjectMapper(new JacksonObjectMapper());
+        //放到集合最前面，优先级高于默认转换器
+        converters.add(0, converter);
+    }
 }
