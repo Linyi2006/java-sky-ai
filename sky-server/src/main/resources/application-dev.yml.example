@@ -12,3 +12,7 @@ sky:
     access-key-id: your_access_key_id_here
     access-key-secret: your_access_key_secret_here
     bucket-name: your_bucket_name_here
+  shop:
+    address: 你的店铺地址
+  baidu:
+    ak: 你的百度地图服务端AK
